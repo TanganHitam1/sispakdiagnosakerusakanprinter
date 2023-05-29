@@ -14,6 +14,9 @@ object DM2: TDM2
     User = 'root'
     Password = ''
     Protocol = 'mysql'
+    LibraryLocation = 
+      'C:\Users\black\Downloads\Tugas\Sem6\sispak\Sistem Pakar Teknik K' +
+      'omputer Diagnosa Kerusakan Printer\libmysql.dll'
     Left = 72
     Top = 40
   end

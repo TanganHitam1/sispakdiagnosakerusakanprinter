@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = '_'
+  Caption = 'Sistem Pakar Teknik Komputer : Diagnosa Kerusakan Pada Printer'
   ClientHeight = 475
   ClientWidth = 635
   Color = clBtnFace

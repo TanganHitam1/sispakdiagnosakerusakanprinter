@@ -108,13 +108,12 @@ begin
         Application.MessageBox('Username telah terdaftar!! Gunakan username'+
         ' lain atau silahkan login','Peringatan',MB_OK or MB_ICONWARNING);
       end else begin
-        Active:=False;
         SQL.Text := 'insert into tabeluser (Username, Nama, No_Telp, Email, '+
         'Alamat, Password) values ('+QuotedStr(uname)+', '+QuotedStr(name)+', '
         +QuotedStr(telp)+', '+QuotedStr(email)+', '+QuotedStr(addr)+', '+
         QuotedStr(pass)+', ';
-        Active:=True;
-        Active:=False;
+        ExecSQL;
+        Close;
         clearReg;
         Hide;
         Form1.Show;

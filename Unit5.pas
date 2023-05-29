@@ -39,7 +39,7 @@ var
 
 implementation
 uses
-  Unit2,Unit4,Unit6;
+  Unit2,Unit3,Unit4,Unit6;
 
 {$R *.dfm}
 procedure TForm5.ShowPertanyaan;
@@ -50,7 +50,8 @@ end;
 procedure TForm5.btnBackClick(Sender: TObject);
 begin
   Hide;
-  Form4.Show;
+  Form3.Show;
+  Form6.Memo1.Lines.Clear;
 end;
 
 procedure TForm5.btnYaClick(Sender: TObject);
@@ -109,6 +110,15 @@ begin
     DBText1.Visible:=True;
     DBText2.Visible:=True;
     DBText3.Visible:=True;
+    Label2.Caption:='';
+    OutputDebugString(PChar(DM2.pRule_zq.FieldByName('KodeKerusakan').ToString));
+    with DM2.History_zq do begin
+      SQL.Text := 'insert into tabelhistory (IDUser, KodeKerusakan) ' +
+      'values ((select IDUser from tabeluser where Username = '+
+      QuotedStr(Form6.Label1.Caption)+') , '+QuotedStr(DM2.pRule_zq.FieldByName('KodeKerusakan').AsString)+')';
+      ExecSQL;
+      Close;
+    end;
   end;
 
 end;

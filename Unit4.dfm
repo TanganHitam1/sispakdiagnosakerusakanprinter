@@ -24052,6 +24052,7 @@ object Form4: TForm4
     Height = 25
     Caption = '&Kembali'
     TabOrder = 0
+    OnClick = btnKembaliClick
   end
   object BitBtn1: TBitBtn
     Left = 16

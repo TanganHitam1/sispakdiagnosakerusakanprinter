@@ -19,6 +19,7 @@ type
     Image2: TImage;
     Image3: TImage;
     procedure SpeedButton1Click(Sender: TObject);
+    procedure btnKembaliClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,9 +31,16 @@ var
 
 implementation
 uses
-  Unit2,Unit5,Unit6;
+  Unit2,Unit3,Unit5,Unit6;
 
 {$R *.dfm}
+
+procedure TForm4.btnKembaliClick(Sender: TObject);
+begin
+  Hide;
+  Form3.Show;
+  Form6.Memo1.Lines.Clear;
+end;
 
 procedure TForm4.SpeedButton1Click(Sender: TObject);
 var

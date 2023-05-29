@@ -59,6 +59,7 @@ object Form5: TForm5
       Height = 25
       Caption = '&Tidak'
       TabOrder = 1
+      OnClick = btnYaClick
     end
   end
   object btnBack: TBitBtn

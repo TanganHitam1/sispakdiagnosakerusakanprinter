@@ -12,6 +12,7 @@ object Form7: TForm7
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object PageControl1: TPageControl
@@ -567,5 +568,23 @@ object Form7: TForm7
         ScrollBars = ssHorizontal
       end
     end
+  end
+  object BitBtn1: TBitBtn
+    Left = 16
+    Top = 432
+    Width = 75
+    Height = 25
+    Kind = bkClose
+    NumGlyphs = 2
+    TabOrder = 1
+  end
+  object BitBtn2: TBitBtn
+    Left = 104
+    Top = 432
+    Width = 75
+    Height = 25
+    Caption = '&Logout'
+    TabOrder = 2
+    OnClick = BitBtn2Click
   end
 end

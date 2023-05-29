@@ -19,8 +19,9 @@ object Form7: TForm7
     Top = 0
     Width = 641
     Height = 473
-    ActivePage = TabSheet3
+    ActivePage = TabSheet6
     TabOrder = 0
+    OnChanging = PageControl1Changing
     object TabSheet1: TTabSheet
       Caption = 'Tabel Gejala'
       object Label1: TLabel
@@ -37,7 +38,7 @@ object Form7: TForm7
         Height = 13
         Caption = 'Nama Gejala'
       end
-      object SMDBGrid1: TSMDBGrid
+      object DBGridGejala: TSMDBGrid
         Left = 0
         Top = 40
         Width = 630
@@ -81,9 +82,9 @@ object Form7: TForm7
         TabOrder = 1
       end
       object DBEKodeGejala: TDBEditTyped
-        Left = 66
+        Left = 130
         Top = 244
-        Width = 113
+        Width = 112
         Height = 21
         Alignment = taLeftJustify
         TypeValue = teString
@@ -101,9 +102,9 @@ object Form7: TForm7
         DataSource = DM2.Gejala_ds
       end
       object DBENamaGejala: TDBEditTyped
-        Left = 66
+        Left = 130
         Top = 279
-        Width = 113
+        Width = 112
         Height = 21
         Alignment = taLeftJustify
         TypeValue = teString
@@ -124,28 +125,38 @@ object Form7: TForm7
     object TabSheet2: TTabSheet
       Caption = 'Tabel Kerusakan'
       ImageIndex = 1
-    end
-    object TabSheet3: TTabSheet
-      Caption = 'Tabel Pertanyaan'
-      ImageIndex = 2
-      object Label3: TLabel
-        Left = 11
-        Top = 255
-        Width = 83
+      object Label8: TLabel
+        Left = 3
+        Top = 247
+        Width = 77
         Height = 13
-        Caption = 'Kode Pertanyaan'
+        Caption = 'Kode Kerusakan'
       end
-      object Label4: TLabel
-        Left = 11
-        Top = 290
-        Width = 56
+      object Label9: TLabel
+        Left = 3
+        Top = 282
+        Width = 80
         Height = 13
-        Caption = 'Pertanyaan'
+        Caption = 'Nama Kerusakan'
       end
-      object DBEKodePertanyaan: TDBEditTyped
-        Left = 114
-        Top = 252
-        Width = 109
+      object Label10: TLabel
+        Left = 3
+        Top = 322
+        Width = 48
+        Height = 13
+        Caption = 'Penyebab'
+      end
+      object Label11: TLabel
+        Left = 3
+        Top = 362
+        Width = 27
+        Height = 13
+        Caption = 'Solusi'
+      end
+      object DBEKodeKerusakan: TDBEditTyped
+        Left = 130
+        Top = 244
+        Width = 104
         Height = 21
         Alignment = taLeftJustify
         TypeValue = teString
@@ -158,14 +169,14 @@ object Form7: TForm7
         ButtonKey = 32808
         ButtonFlat = False
         TabOrder = 0
-        Text = ''
-        DataField = 'KodePertanyaan'
-        DataSource = DM2.Pertanyaan_ds
+        Text = 'DBEKodeKerusakan'
+        DataField = 'KodeKerusakan'
+        DataSource = DM2.Kerusakan_ds
       end
-      object DBEPertanyaan: TDBEditTyped
-        Left = 114
-        Top = 287
-        Width = 109
+      object DBENamaKerusakan: TDBEditTyped
+        Left = 130
+        Top = 279
+        Width = 104
         Height = 21
         Alignment = taLeftJustify
         TypeValue = teString
@@ -178,13 +189,143 @@ object Form7: TForm7
         ButtonKey = 32808
         ButtonFlat = False
         TabOrder = 1
-        Text = ''
+        Text = 'DBENamaKerusakan'
+        DataField = 'NamaKerusakan'
+        DataSource = DM2.Kerusakan_ds
+      end
+      object SMDBGrid1: TSMDBGrid
+        Left = 0
+        Top = 40
+        Width = 630
+        Height = 201
+        DataSource = DM2.Kerusakan_ds
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Flat = False
+        BandsFont.Charset = DEFAULT_CHARSET
+        BandsFont.Color = clWindowText
+        BandsFont.Height = -11
+        BandsFont.Name = 'Tahoma'
+        BandsFont.Style = []
+        Groupings = <>
+        GridStyle.Style = gsNormal
+        GridStyle.OddColor = clWindow
+        GridStyle.EvenColor = clWindow
+        TitleHeight.PixelCount = 24
+        FooterColor = clBtnFace
+        ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoFilterAutoApply]
+        RegistryKey = 'Software\Scalabium'
+        RegistrySection = 'SMDBGrid'
+        WidthOfIndicator = 11
+        DefaultRowHeight = 17
+        ScrollBars = ssHorizontal
+      end
+      object SMDBNavigator4: TSMDBNavigator
+        Left = 192
+        Top = 9
+        Width = 240
+        Height = 25
+        DataSource = DM2.Kerusakan_ds
+        Layout = blGlyphLeft
+        ShowCaption = False
+        ShowGlyph = True
+        TabOrder = 3
+      end
+      object DBEPenyebab: TDBEditTyped
+        Left = 130
+        Top = 319
+        Width = 487
+        Height = 21
+        Alignment = taLeftJustify
+        TypeValue = teString
+        EnabledLimit = False
+        EnabledTypedLimit = True
+        Flat = False
+        ButtonStyle = bsNone
+        ButtonWidth = 0
+        NumGlyphs = 1
+        ButtonKey = 32808
+        ButtonFlat = False
+        TabOrder = 4
+        Text = 'DBEPenyebab'
+        DataField = 'Penyebab'
+        DataSource = DM2.Kerusakan_ds
+      end
+      object DBMSolusi: TDBMemo
+        Left = 130
+        Top = 359
+        Width = 487
+        Height = 83
+        DataField = 'Solusi'
+        DataSource = DM2.Kerusakan_ds
+        TabOrder = 5
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Tabel Pertanyaan'
+      ImageIndex = 2
+      object Label3: TLabel
+        Left = 3
+        Top = 247
+        Width = 83
+        Height = 13
+        Caption = 'Kode Pertanyaan'
+      end
+      object Label4: TLabel
+        Left = 3
+        Top = 282
+        Width = 56
+        Height = 13
+        Caption = 'Pertanyaan'
+      end
+      object DBEKodePertanyaan: TDBEditTyped
+        Left = 130
+        Top = 244
+        Width = 104
+        Height = 21
+        Alignment = taLeftJustify
+        TypeValue = teString
+        EnabledLimit = False
+        EnabledTypedLimit = True
+        Flat = False
+        ButtonStyle = bsNone
+        ButtonWidth = 0
+        NumGlyphs = 1
+        ButtonKey = 32808
+        ButtonFlat = False
+        TabOrder = 0
+        Text = 'DBEKodePertanyaan'
+        DataField = 'KodePertanyaan'
+        DataSource = DM2.Pertanyaan_ds
+      end
+      object DBEPertanyaan: TDBEditTyped
+        Left = 130
+        Top = 279
+        Width = 104
+        Height = 21
+        Alignment = taLeftJustify
+        TypeValue = teString
+        EnabledLimit = False
+        EnabledTypedLimit = True
+        Flat = False
+        ButtonStyle = bsNone
+        ButtonWidth = 0
+        NumGlyphs = 1
+        ButtonKey = 32808
+        ButtonFlat = False
+        TabOrder = 1
+        Text = 'DBEPertanyaan'
         DataField = 'Pertanyaan'
         DataSource = DM2.Pertanyaan_ds
       end
-      object SMDBGrid2: TSMDBGrid
-        Left = 3
-        Top = 48
+      object DBGridPertanyaan: TSMDBGrid
+        Left = 0
+        Top = 40
         Width = 630
         Height = 201
         DataSource = DM2.Pertanyaan_ds
@@ -215,8 +356,8 @@ object Form7: TForm7
         ScrollBars = ssHorizontal
       end
       object SMDBNavigator2: TSMDBNavigator
-        Left = 200
-        Top = 17
+        Left = 192
+        Top = 9
         Width = 240
         Height = 25
         DataSource = DM2.Pertanyaan_ds
@@ -230,22 +371,29 @@ object Form7: TForm7
       Caption = 'Tabel Rule'
       ImageIndex = 3
       object Label5: TLabel
-        Left = 19
-        Top = 263
-        Width = 57
+        Left = 3
+        Top = 247
+        Width = 48
         Height = 13
-        Caption = 'Kode Gejala'
+        Caption = 'Kode Rule'
       end
       object Label6: TLabel
-        Left = 19
-        Top = 298
-        Width = 60
+        Left = 3
+        Top = 282
+        Width = 102
         Height = 13
-        Caption = 'Nama Gejala'
+        Caption = 'List Kode Pertanyaan'
       end
-      object DBEditTyped3: TDBEditTyped
-        Left = 82
-        Top = 260
+      object Label7: TLabel
+        Left = 3
+        Top = 317
+        Width = 77
+        Height = 13
+        Caption = 'Kode Kerusakan'
+      end
+      object DBEKodeRule: TDBEditTyped
+        Left = 130
+        Top = 244
         Width = 113
         Height = 21
         Alignment = taLeftJustify
@@ -259,14 +407,14 @@ object Form7: TForm7
         ButtonKey = 32808
         ButtonFlat = False
         TabOrder = 0
-        Text = 'DBEditTyped3'
-        DataField = 'KodeGejala'
-        DataSource = DM2.Gejala_ds
+        Text = 'DBEKodeRule'
+        DataField = 'KodeRule'
+        DataSource = DM2.Rule_ds
       end
-      object DBEditTyped4: TDBEditTyped
-        Left = 82
-        Top = 295
-        Width = 113
+      object DBEListKodePertanyaan: TDBEditTyped
+        Left = 130
+        Top = 279
+        Width = 479
         Height = 21
         Alignment = taLeftJustify
         TypeValue = teString
@@ -279,16 +427,16 @@ object Form7: TForm7
         ButtonKey = 32808
         ButtonFlat = False
         TabOrder = 1
-        Text = 'DBEditTyped4'
-        DataField = 'NamaGejala'
-        DataSource = DM2.Gejala_ds
+        Text = 'DBEListKodePertanyaan'
+        DataField = 'kodepertanyaan1'
+        DataSource = DM2.Rule_ds
       end
       object SMDBGrid3: TSMDBGrid
-        Left = 3
-        Top = 56
+        Left = 0
+        Top = 40
         Width = 630
         Height = 201
-        DataSource = DM2.Gejala_ds
+        DataSource = DM2.Rule_ds
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 2
         TitleFont.Charset = DEFAULT_CHARSET
@@ -316,24 +464,108 @@ object Form7: TForm7
         ScrollBars = ssHorizontal
       end
       object SMDBNavigator3: TSMDBNavigator
-        Left = 208
-        Top = 25
+        Left = 192
+        Top = 9
         Width = 240
         Height = 25
-        DataSource = DM2.Gejala_ds
+        DataSource = DM2.Rule_ds
         Layout = blGlyphLeft
         ShowCaption = False
         ShowGlyph = True
         TabOrder = 3
       end
+      object DBErfKodeKerusakan: TDBEditTyped
+        Left = 130
+        Top = 314
+        Width = 113
+        Height = 21
+        Alignment = taLeftJustify
+        TypeValue = teString
+        EnabledLimit = False
+        EnabledTypedLimit = True
+        Flat = False
+        ButtonStyle = bsNone
+        ButtonWidth = 0
+        NumGlyphs = 1
+        ButtonKey = 32808
+        ButtonFlat = False
+        TabOrder = 4
+        Text = 'DBErfKodeKerusakan'
+        DataField = 'kodekerusakan'
+        DataSource = DM2.Rule_ds
+      end
     end
     object TabSheet5: TTabSheet
       Caption = 'Tabel User'
       ImageIndex = 4
+      object SMDBGrid2: TSMDBGrid
+        Left = 0
+        Top = 40
+        Width = 630
+        Height = 201
+        DataSource = DM2.User_ds
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Flat = False
+        BandsFont.Charset = DEFAULT_CHARSET
+        BandsFont.Color = clWindowText
+        BandsFont.Height = -11
+        BandsFont.Name = 'Tahoma'
+        BandsFont.Style = []
+        Groupings = <>
+        GridStyle.Style = gsNormal
+        GridStyle.OddColor = clWindow
+        GridStyle.EvenColor = clWindow
+        TitleHeight.PixelCount = 24
+        FooterColor = clBtnFace
+        ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoFilterAutoApply]
+        RegistryKey = 'Software\Scalabium'
+        RegistrySection = 'SMDBGrid'
+        WidthOfIndicator = 11
+        DefaultRowHeight = 17
+        ScrollBars = ssHorizontal
+      end
     end
     object TabSheet6: TTabSheet
       Caption = 'Tabel Riwayat Konsultasi'
       ImageIndex = 5
+      object SMDBGrid4: TSMDBGrid
+        Left = 0
+        Top = 40
+        Width = 630
+        Height = 201
+        DataSource = DM2.History_ds
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Flat = False
+        BandsFont.Charset = DEFAULT_CHARSET
+        BandsFont.Color = clWindowText
+        BandsFont.Height = -11
+        BandsFont.Name = 'Tahoma'
+        BandsFont.Style = []
+        Groupings = <>
+        GridStyle.Style = gsNormal
+        GridStyle.OddColor = clWindow
+        GridStyle.EvenColor = clWindow
+        TitleHeight.PixelCount = 24
+        FooterColor = clBtnFace
+        ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoFilterAutoApply]
+        RegistryKey = 'Software\Scalabium'
+        RegistrySection = 'SMDBGrid'
+        WidthOfIndicator = 11
+        DefaultRowHeight = 17
+        ScrollBars = ssHorizontal
+      end
     end
   end
 end

@@ -89,19 +89,19 @@ begin
   end else if PageControl1.TabIndex = 3 then begin
     with DM2.Rule_zq do begin
       Active:=False;
-      Sql.Text:='select * from tabelgejala order by KodeRule';
+      Sql.Text:='select * from tabelrule order by KodeRule';
       Active:=True;
     end;
   end else if PageControl1.TabIndex = 4 then begin
     with DM2.User_zq do begin
       Active:=False;
-      Sql.Text:='select * from tabelgejala order by KodeGejala';
+      Sql.Text:='select * from tabeluser order by IDUser';
       Active:=True;
     end;
   end else begin
-    with DM2.Gejala_zq do begin
+    with DM2.History_zq do begin
       Active:=False;
-      Sql.Text:='select * from tabelgejala order by KodeGejala';
+      Sql.Text:='select * from tabelhistory order by IDHistory';
       Active:=True;
     end;
   end;

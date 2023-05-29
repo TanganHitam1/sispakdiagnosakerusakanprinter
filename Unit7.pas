@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.DB, Vcl.ExtCtrls,
   SMDBCtrl, Vcl.Grids, Vcl.DBGrids, SMDBGrid, Vcl.StdCtrls, Vcl.Mask, EditType,
-  EditTypeDB, Vcl.DBCtrls;
+  EditTypeDB, Vcl.DBCtrls, Vcl.Buttons;
 
 type
   TForm7 = class(TForm)
@@ -49,9 +49,14 @@ type
     DBMSolusi: TDBMemo;
     SMDBGrid2: TSMDBGrid;
     SMDBGrid4: TSMDBGrid;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn2Click(Sender: TObject);
     procedure PageControl1Changing(Sender: TObject; var AllowChange: Boolean);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+    procedure refreshtable;
   public
     { Public declarations }
   end;
@@ -64,9 +69,18 @@ uses
   Unit1,Unit2;
 
 {$R *.dfm}
+procedure TForm7.FormShow(Sender: TObject);
+begin
+  refreshtable;
+end;
 
 procedure TForm7.PageControl1Changing(Sender: TObject;
   var AllowChange: Boolean);
+begin
+  refreshtable;
+end;
+
+procedure TForm7.refreshtable;
 begin
   if PageControl1.TabIndex = 0 then begin
     with DM2.Gejala_zq do begin
@@ -105,8 +119,12 @@ begin
       Active:=True;
     end;
   end;
+end;
 
-
+procedure TForm7.BitBtn2Click(Sender: TObject);
+begin
+  Hide;
+  Form1.Show;
 end;
 
 end.

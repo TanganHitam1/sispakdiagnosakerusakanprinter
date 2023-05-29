@@ -35,8 +35,6 @@ var
   Form5: TForm5;
 
 implementation
-uses
-  Unit2;
 
 {$R *.dfm}
 
@@ -49,7 +47,6 @@ begin
   tag := (Sender AS TBitBtn).Tag;
   if tag = 1 then
     s = s + 'N';
-  s:= s+dm
 end;
 
 end.

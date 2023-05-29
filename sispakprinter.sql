@@ -47,26 +47,6 @@ INSERT INTO `tabelgejala` (`KodeGejala`, `NamaGejala`) VALUES
 	('G0014', 'Printer tidak bisa mencetak sepenuhnya'),
 	('G0015', 'Printer hanya mencetak satu kali');
 
--- Dumping structure for table sistempakar_printer.tabelhistory
-DROP TABLE IF EXISTS `tabelhistory`;
-CREATE TABLE IF NOT EXISTS `tabelhistory` (
-  `IDHistory` int(11) NOT NULL AUTO_INCREMENT,
-  `IDUser` int(11) NOT NULL,
-  `KodeKerusakan` varchar(6) NOT NULL,
-  `Waktu` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`IDHistory`),
-  KEY `FK__tabeluser` (`IDUser`),
-  KEY `FK_tabelhistory_tabelkerusakan` (`KodeKerusakan`),
-  CONSTRAINT `FK__tabeluser` FOREIGN KEY (`IDUser`) REFERENCES `tabeluser` (`IDUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tabelhistory_tabelkerusakan` FOREIGN KEY (`KodeKerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table sistempakar_printer.tabelhistory: ~2 rows (approximately)
-DELETE FROM `tabelhistory`;
-INSERT INTO `tabelhistory` (`IDHistory`, `IDUser`, `KodeKerusakan`, `Waktu`) VALUES
-	(1, 1, 'K0003', '2023-05-28 15:10:20'),
-	(2, 2, 'K0006', '2023-05-28 15:58:24');
-
 -- Dumping structure for table sistempakar_printer.tabelkerusakan
 DROP TABLE IF EXISTS `tabelkerusakan`;
 CREATE TABLE IF NOT EXISTS `tabelkerusakan` (
@@ -153,6 +133,26 @@ DELETE FROM `tabeluser`;
 INSERT INTO `tabeluser` (`IDUser`, `Username`, `Nama`, `No_Telp`, `Email`, `Alamat`, `Password`) VALUES
 	(1, 'mario.chamdjoko', 'Mario Chamdjoko Jati Mulyo', '085155001711', 'mario.chamdjoko@mhs.itenas.ac.', 'Riung bandung', 'ngasal'),
 	(2, 'mario.jati', 'MarChamdjok', '08811223344', 'chamdjokom@gmail.com', 'Riung bandung', 'ngasaljuga');
+	
+-- Dumping structure for table sistempakar_printer.tabelhistory
+DROP TABLE IF EXISTS `tabelhistory`;
+CREATE TABLE IF NOT EXISTS `tabelhistory` (
+  `IDHistory` int(11) NOT NULL AUTO_INCREMENT,
+  `IDUser` int(11) NOT NULL,
+  `KodeKerusakan` varchar(6) NOT NULL,
+  `Waktu` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`IDHistory`),
+  KEY `FK__tabeluser` (`IDUser`),
+  KEY `FK_tabelhistory_tabelkerusakan` (`KodeKerusakan`),
+  CONSTRAINT `FK__tabeluser` FOREIGN KEY (`IDUser`) REFERENCES `tabeluser` (`IDUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tabelhistory_tabelkerusakan` FOREIGN KEY (`KodeKerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table sistempakar_printer.tabelhistory: ~2 rows (approximately)
+DELETE FROM `tabelhistory`;
+INSERT INTO `tabelhistory` (`IDHistory`, `IDUser`, `KodeKerusakan`, `Waktu`) VALUES
+	(1, 1, 'K0003', '2023-05-28 15:10:20'),
+	(2, 2, 'K0006', '2023-05-28 15:58:24');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

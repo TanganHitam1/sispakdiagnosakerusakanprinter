@@ -33,6 +33,7 @@ object Form8: TForm8
       Width = 148
       Height = 13
       Caption = 'Sudah punya akun? &Login disini'
+      OnClick = Label4Click
     end
     object btnLogin: TBitBtn
       Left = 86
@@ -40,7 +41,8 @@ object Form8: TForm8
       Width = 75
       Height = 25
       Caption = '&Register'
-      TabOrder = 0
+      TabOrder = 7
+      OnClick = btnLoginClick
     end
     object chckShowPassword: TCheckBox
       Left = 192
@@ -48,22 +50,24 @@ object Form8: TForm8
       Width = 41
       Height = 17
       Caption = 'Show'
-      TabOrder = 1
+      TabOrder = 8
+      OnClick = chckShowPasswordClick
     end
-    object CheckBox1: TCheckBox
+    object chckShowConfirmPass: TCheckBox
       Left = 191
       Top = 292
       Width = 42
       Height = 17
       Caption = 'Show'
-      TabOrder = 2
+      TabOrder = 9
+      OnClick = chckShowConfirmPassClick
     end
     object edtAlamat: TEdit
       Left = 64
       Top = 208
       Width = 121
       Height = 21
-      TabOrder = 3
+      TabOrder = 4
       TextHint = 'Alamat'
     end
     object edtConfirmPass: TEdit
@@ -72,7 +76,7 @@ object Form8: TForm8
       Width = 121
       Height = 21
       PasswordChar = '*'
-      TabOrder = 4
+      TabOrder = 6
       TextHint = 'Confirm Password'
     end
     object edtEmail: TEdit
@@ -80,7 +84,7 @@ object Form8: TForm8
       Top = 168
       Width = 121
       Height = 21
-      TabOrder = 5
+      TabOrder = 3
       TextHint = 'Email'
     end
     object edtName: TEdit
@@ -88,7 +92,7 @@ object Form8: TForm8
       Top = 88
       Width = 121
       Height = 21
-      TabOrder = 6
+      TabOrder = 1
       TextHint = 'Nama'
     end
     object edtPass: TEdit
@@ -97,7 +101,7 @@ object Form8: TForm8
       Width = 121
       Height = 21
       PasswordChar = '*'
-      TabOrder = 7
+      TabOrder = 5
       TextHint = 'Password'
     end
     object edtTelp: TEdit
@@ -105,7 +109,7 @@ object Form8: TForm8
       Top = 128
       Width = 121
       Height = 21
-      TabOrder = 8
+      TabOrder = 2
       TextHint = 'Nomor Telepon'
     end
     object edtUname: TEdit
@@ -113,7 +117,7 @@ object Form8: TForm8
       Top = 48
       Width = 121
       Height = 21
-      TabOrder = 9
+      TabOrder = 0
       TextHint = 'Username'
     end
   end

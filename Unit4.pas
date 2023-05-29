@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Imaging.jpeg, Vcl.ExtCtrls;
 
 type
   TForm4 = class(TForm)
@@ -14,6 +15,9 @@ type
     SpeedButton3: TSpeedButton;
     btnKembali: TBitBtn;
     BitBtn1: TBitBtn;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
     procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
@@ -25,7 +29,7 @@ var
   Form4: TForm4;
 
 implementation
-uses 
+uses
   Unit2,Unit5,Unit6;
 
 {$R *.dfm}

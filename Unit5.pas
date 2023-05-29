@@ -25,6 +25,8 @@ type
     DBText1: TDBText;
     Label6: TLabel;
     procedure btnYaClick(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,9 +38,15 @@ var
 
 implementation
 uses
-  Unit2;
+  Unit2,Unit4;
 
 {$R *.dfm}
+
+procedure TForm5.btnBackClick(Sender: TObject);
+begin
+  Hide;
+  Form4.Show;
+end;
 
 procedure TForm5.btnYaClick(Sender: TObject);
 var
@@ -48,8 +56,15 @@ begin
   s:='';
   tag := (Sender AS TBitBtn).Tag;
   if tag = 1 then
-    s = s + 'N';
-  s:= s+dm
+    s := s + 'N';
+//  s:= s+DM2.Pertanyaan_zq.FieldByName();
+end;
+
+procedure TForm5.FormShow(Sender: TObject);
+begin
+  DBText1.Visible:=False;
+  DBText2.Visible:=False;
+  DBText3.Visible:=False;
 end;
 
 end.

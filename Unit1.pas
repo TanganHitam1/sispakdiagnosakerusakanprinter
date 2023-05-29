@@ -22,6 +22,7 @@ type
     procedure Label4Click(Sender: TObject);
     procedure chckShowPasswordClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     procedure clearEdt;
     { Private declarations }
@@ -51,6 +52,11 @@ begin
   edtPass.Text := '';
   edtPass.PasswordChar := '*';
   chckShowPassword.Checked := false;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  DM2.TabelAktif(true);
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

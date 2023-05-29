@@ -12,6 +12,7 @@ object Form5: TForm5
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -67,6 +68,7 @@ object Form5: TForm5
     Height = 25
     Caption = '&Kembali'
     TabOrder = 1
+    OnClick = btnBackClick
   end
   object btnClose: TBitBtn
     Left = 24

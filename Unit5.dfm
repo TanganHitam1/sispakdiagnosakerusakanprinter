@@ -25,7 +25,7 @@ object Form5: TForm5
     Left = 296
     Top = 27
     Width = 31
-    Height = 12
+    Height = 13
     Caption = 'Label6'
   end
   object Panel1: TPanel

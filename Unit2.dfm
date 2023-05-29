@@ -1,5 +1,6 @@
 object DM2: TDM2
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 352
   Width = 637
   object con: TZConnection
@@ -7,16 +8,13 @@ object DM2: TDM2
     Catalog = ''
     Properties.Strings = (
       'controls_cp=CP_UTF16')
-    Connected = True
     HostName = 'localhost'
     Port = 3306
     Database = 'sistempakar_printer'
     User = 'root'
     Password = ''
     Protocol = 'mysql'
-    LibraryLocation = 
-      'C:\Users\black\Downloads\Tugas\Sem6\sispak\Sistem Pakar Teknik K' +
-      'omputer Diagnosa Kerusakan Printer\libmysql.dll'
+    LibraryLocation = '\libmysql.dll'
     Left = 72
     Top = 40
   end

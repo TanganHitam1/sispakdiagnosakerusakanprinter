@@ -43,9 +43,9 @@ var
   s,s2,s3 : String;
   i, tag : Integer;
 begin
-  tag := (Sender AS TBitBtn).Tag;
-  if tag = 0 then
-    s :=
+//  tag := (Sender AS TBitBtn).Tag;
+//  if tag = 0 then
+//    s :=
 end;
 
 end.

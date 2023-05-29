@@ -30,6 +30,7 @@ type
     pRule_zqrfPenyebab: TStringField;
     pRule_zqrfNamaKerusakan: TStringField;
     pRule_zqrfSolusi: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,6 +46,14 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+procedure TDM2.DataModuleCreate(Sender: TObject);
+var
+ dir : string;
+begin
+  GetDir(0,dir);
+  con.LibraryLocation:=dir + '\libmysql.dll';
+end;
+
 procedure  TDM2.TabelAktif(b: Boolean);
 begin
   Gejala_zq.Active := b;

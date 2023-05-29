@@ -1,0 +1,62 @@
+object Form4: TForm4
+  Left = 0
+  Top = 0
+  Caption = 'Jenis Printer'
+  ClientHeight = 475
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 200
+    Top = 56
+    Width = 247
+    Height = 13
+    Caption = 'Termasuk jenis apakah printer yang anda gunakan?'
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 16
+    Top = 88
+    Width = 185
+    Height = 185
+    OnClick = SpeedButton1Click
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 432
+    Top = 88
+    Width = 185
+    Height = 185
+    OnClick = SpeedButton1Click
+  end
+  object SpeedButton3: TSpeedButton
+    Left = 224
+    Top = 88
+    Width = 185
+    Height = 185
+    OnClick = SpeedButton1Click
+  end
+  object btnKembali: TBitBtn
+    Left = 97
+    Top = 408
+    Width = 75
+    Height = 25
+    Caption = '&Kembali'
+    TabOrder = 0
+  end
+  object BitBtn1: TBitBtn
+    Left = 16
+    Top = 408
+    Width = 75
+    Height = 25
+    Kind = bkClose
+    NumGlyphs = 2
+    TabOrder = 1
+  end
+end

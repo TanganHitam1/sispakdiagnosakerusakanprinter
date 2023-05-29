@@ -1,0 +1,58 @@
+unit Unit2;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TDM2 = class(TDataModule)
+    con: TZConnection;
+    Gejala_zq: TZQuery;
+    Kerusakan_zq: TZQuery;
+    Pertanyaan_zq: TZQuery;
+    pRule_zq: TZQuery;
+    strngfldRule_zqkodepertanyaan1: TStringField;
+    strngfldRule_zqkodekerusakan: TStringField;
+    strngfldRule_zqrfNamaKerusakan: TStringField;
+    Rule_zq: TZQuery;
+    Gejala_ds: TDataSource;
+    Kerusakan_ds: TDataSource;
+    Pertanyaan_ds: TDataSource;
+    Rule_ds: TDataSource;
+    pRule_ds: TDataSource;
+    User_zq: TZQuery;
+    User_ds: TDataSource;
+    History_zq: TZQuery;
+    History_ds: TDataSource;
+    pRule_zqrfPenyebab: TWordField;
+    pRule_zqrfSolusi: TWordField;
+    pRule_zqKodeRule: TWideStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure TabelAktif(b:Boolean);
+  end;
+
+var
+  DM2: TDM2;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+procedure  TDM2.TabelAktif(b: Boolean);
+begin
+  Gejala_zq.Active := b;
+  Kerusakan_zq.Active := b;
+  Pertanyaan_zq.Active := b;
+  Rule_zq.Active := b;
+  pRule_zq.Active := b;
+  User_zq.Active := b;
+  History_zq.Active := b;
+end;
+
+end.

@@ -14,7 +14,6 @@ object DM2: TDM2
     User = 'root'
     Password = ''
     Protocol = 'mysql'
-    LibraryLocation = '\libmysql.dll'
     Left = 72
     Top = 40
   end

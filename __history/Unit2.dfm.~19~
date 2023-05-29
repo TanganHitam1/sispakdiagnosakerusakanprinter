@@ -1,22 +1,20 @@
 object DM2: TDM2
   OldCreateOrder = False
-  Height = 295
+  OnCreate = DataModuleCreate
+  Height = 352
   Width = 637
   object con: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
     Properties.Strings = (
       'controls_cp=CP_UTF16')
-    Connected = True
     HostName = 'localhost'
     Port = 3306
     Database = 'sistempakar_printer'
     User = 'root'
     Password = ''
     Protocol = 'mysql'
-    LibraryLocation = 
-      'C:\Users\black\Downloads\Tugas\Sem6\sispak\Sistem Pakar Teknik K' +
-      'omputer Diagnosa Kerusakan Printer\libmysql.dll'
+    LibraryLocation = '\libmysql.dll'
     Left = 72
     Top = 40
   end
@@ -67,7 +65,7 @@ object DM2: TDM2
       Required = True
       Size = 6
     end
-    object pRule_zqrfNamaKerusakan: TWideStringField
+    object pRule_zqrfNamaKerusakan: TStringField
       FieldKind = fkLookup
       FieldName = 'rfNamaKerusakan'
       LookupDataSet = Kerusakan_zq
@@ -77,24 +75,24 @@ object DM2: TDM2
       Size = 30
       Lookup = True
     end
-    object pRule_zqrfPenyebab: TMemoField
+    object pRule_zqrfPenyebab: TStringField
       FieldKind = fkLookup
       FieldName = 'rfPenyebab'
       LookupDataSet = Kerusakan_zq
       LookupKeyFields = 'KodeKerusakan'
       LookupResultField = 'Penyebab'
       KeyFields = 'kodekerusakan'
-      BlobType = ftMemo
+      Size = 200
       Lookup = True
     end
-    object pRule_zqrfSolusi: TMemoField
+    object pRule_zqrfSolusi: TStringField
       FieldKind = fkLookup
       FieldName = 'rfSolusi'
       LookupDataSet = Kerusakan_zq
       LookupKeyFields = 'KodeKerusakan'
       LookupResultField = 'Solusi'
       KeyFields = 'kodekerusakan'
-      BlobType = ftMemo
+      Size = 1000
       Lookup = True
     end
   end
@@ -156,5 +154,11 @@ object DM2: TDM2
     DataSet = History_zq
     Left = 544
     Top = 184
+  end
+  object TempPertanyaan_zq: TZQuery
+    Connection = con
+    Params = <>
+    Left = 240
+    Top = 256
   end
 end

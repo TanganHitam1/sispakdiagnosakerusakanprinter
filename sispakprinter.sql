@@ -16,10 +16,12 @@
 
 
 -- Dumping database structure for sistempakar_printer
+DROP DATABASE IF EXISTS `sistempakar_printer`;
 CREATE DATABASE IF NOT EXISTS `sistempakar_printer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `sistempakar_printer`;
 
 -- Dumping structure for table sistempakar_printer.tabelgejala
+DROP TABLE IF EXISTS `tabelgejala`;
 CREATE TABLE IF NOT EXISTS `tabelgejala` (
   `KodeGejala` varchar(6) NOT NULL,
   `NamaGejala` varchar(50) NOT NULL,
@@ -46,6 +48,7 @@ INSERT INTO `tabelgejala` (`KodeGejala`, `NamaGejala`) VALUES
 	('G0015', 'Printer hanya mencetak satu kali');
 
 -- Dumping structure for table sistempakar_printer.tabelhistory
+DROP TABLE IF EXISTS `tabelhistory`;
 CREATE TABLE IF NOT EXISTS `tabelhistory` (
   `IDHistory` int(11) NOT NULL AUTO_INCREMENT,
   `IDUser` int(11) NOT NULL,
@@ -65,6 +68,7 @@ INSERT INTO `tabelhistory` (`IDHistory`, `IDUser`, `KodeKerusakan`, `Waktu`) VAL
 	(2, 2, 'K0006', '2023-05-28 15:58:24');
 
 -- Dumping structure for table sistempakar_printer.tabelkerusakan
+DROP TABLE IF EXISTS `tabelkerusakan`;
 CREATE TABLE IF NOT EXISTS `tabelkerusakan` (
   `KodeKerusakan` varchar(6) NOT NULL,
   `NamaKerusakan` varchar(30) NOT NULL,
@@ -84,6 +88,7 @@ INSERT INTO `tabelkerusakan` (`KodeKerusakan`, `NamaKerusakan`, `Penyebab`, `Sol
 	('K0006', 'Kabel Cutter', 'Kabel Cutter bermasalah', 'Coba lakukan pengecekan di kabel cutternya apakah ada yang putus atau tidak dan cek juga apakah sensor gerak masih bergunsi dengan baik atau tidak dan lakukanlah pembersihan sendor dengan menggunakan cairan pembersih printer');
 
 -- Dumping structure for table sistempakar_printer.tabelpertanyaan
+DROP TABLE IF EXISTS `tabelpertanyaan`;
 CREATE TABLE IF NOT EXISTS `tabelpertanyaan` (
   `KodePertanyaan` varchar(6) NOT NULL,
   `Pertanyaan` varchar(100) NOT NULL,
@@ -110,6 +115,7 @@ INSERT INTO `tabelpertanyaan` (`KodePertanyaan`, `Pertanyaan`) VALUES
 	('P0015', 'Apakah printer hanya dapat mencetak sebanyak satu kali?');
 
 -- Dumping structure for table sistempakar_printer.tabelrule
+DROP TABLE IF EXISTS `tabelrule`;
 CREATE TABLE IF NOT EXISTS `tabelrule` (
   `KodeRule` varchar(6) NOT NULL,
   `kodepertanyaan1` varchar(50) NOT NULL,
@@ -130,6 +136,7 @@ INSERT INTO `tabelrule` (`KodeRule`, `kodepertanyaan1`, `kodekerusakan`) VALUES
 	('R0006', 'P0003,P0014,P0015', 'K0006');
 
 -- Dumping structure for table sistempakar_printer.tabeluser
+DROP TABLE IF EXISTS `tabeluser`;
 CREATE TABLE IF NOT EXISTS `tabeluser` (
   `IDUser` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(50) NOT NULL,

@@ -37,7 +37,7 @@ procedure TForm3.btnKonsultasiClick(Sender: TObject);
 begin
   Hide;
   Form4.Show;
-//  Form6.Show;
+  Form6.Show;
 end;
 
 procedure TForm3.btnLogOutClick(Sender: TObject);

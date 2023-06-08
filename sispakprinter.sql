@@ -16,12 +16,10 @@
 
 
 -- Dumping database structure for sistempakar_printer
-DROP DATABASE IF EXISTS `sistempakar_printer`;
 CREATE DATABASE IF NOT EXISTS `sistempakar_printer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `sistempakar_printer`;
 
 -- Dumping structure for table sistempakar_printer.tabelgejala
-DROP TABLE IF EXISTS `tabelgejala`;
 CREATE TABLE IF NOT EXISTS `tabelgejala` (
   `KodeGejala` varchar(6) NOT NULL,
   `NamaGejala` varchar(50) NOT NULL,
@@ -47,28 +45,55 @@ INSERT INTO `tabelgejala` (`KodeGejala`, `NamaGejala`) VALUES
 	('G0014', 'Printer tidak bisa mencetak sepenuhnya'),
 	('G0015', 'Printer hanya mencetak satu kali');
 
+-- Dumping structure for table sistempakar_printer.tabelhistory
+CREATE TABLE IF NOT EXISTS `tabelhistory` (
+  `IDHistory` int(11) NOT NULL AUTO_INCREMENT,
+  `IDUser` int(11) NOT NULL,
+  `KodeKerusakan` varchar(6) NOT NULL,
+  `Waktu` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`IDHistory`),
+  KEY `FK__tabeluser` (`IDUser`),
+  KEY `FK_tabelhistory_tabelkerusakan` (`KodeKerusakan`),
+  CONSTRAINT `FK__tabeluser` FOREIGN KEY (`IDUser`) REFERENCES `tabeluser` (`IDUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tabelhistory_tabelkerusakan` FOREIGN KEY (`KodeKerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table sistempakar_printer.tabelhistory: ~8 rows (approximately)
+DELETE FROM `tabelhistory`;
+INSERT INTO `tabelhistory` (`IDHistory`, `IDUser`, `KodeKerusakan`, `Waktu`) VALUES
+	(1, 1, 'K0003', '2023-05-28 15:10:20'),
+	(2, 2, 'K0006', '2023-05-28 15:58:24'),
+	(7, 1, 'K0002', '2023-05-29 19:52:25'),
+	(9, 1, 'K0002', '2023-05-29 20:00:00'),
+	(10, 1, 'K0001', '2023-05-29 20:03:40'),
+	(11, 1, 'K0001', '2023-05-29 20:03:41'),
+	(12, 1, 'K0006', '2023-05-29 20:05:54'),
+	(13, 1, 'K0001', '2023-05-29 20:10:50'),
+	(14, 1, 'K0001', '2023-05-30 00:45:39'),
+	(15, 1, 'K0004', '2023-05-30 00:50:41'),
+	(16, 1, 'K0003', '2023-06-06 10:00:49');
+
 -- Dumping structure for table sistempakar_printer.tabelkerusakan
-DROP TABLE IF EXISTS `tabelkerusakan`;
 CREATE TABLE IF NOT EXISTS `tabelkerusakan` (
   `KodeKerusakan` varchar(6) NOT NULL,
   `NamaKerusakan` varchar(30) NOT NULL,
   `Penyebab` varchar(200) NOT NULL,
   `Solusi` varchar(1000) NOT NULL,
+  `Gambar` blob DEFAULT NULL,
   PRIMARY KEY (`KodeKerusakan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table sistempakar_printer.tabelkerusakan: ~6 rows (approximately)
 DELETE FROM `tabelkerusakan`;
-INSERT INTO `tabelkerusakan` (`KodeKerusakan`, `NamaKerusakan`, `Penyebab`, `Solusi`) VALUES
-	('K0001', 'Tinta Habis', 'Tinta pada cartridge sudah habis atau mat head kotor', 'Lepas cartridge dengan hati-hati untuk mengecek apakah tinta sudah habis atau belum. Setelah itu lakukan pembersihan pada mat headnya dengan menggunakan carian pembersih tinta'),
-	('K0002', 'Kertas terlalu Tebal', 'Kertas yang dipasang ke printer terlalu banyak atau kertas lengket', 'Membatasi tebal tumpukan kertas sesuai dengan kapasitas yang didukung oleh printer. Sebelum dipasang pada paper try, sebaiknya kertas dikibas-kibaskan terlebih dahulu agar kertas tidak saling menempel'),
-	('K0003', 'Toner Printer', 'Toner printer tidak merata terpasang', 'Menggoyang toner printer agar lebih merata dan dapat dipakai kembali namun tetap bersiap untuk mengisinya dengan yang baru'),
-	('K0004', 'Drum', 'Drum kotor atau sudah berlubang', 'Usaplah drum dnegan kain halus untuk menghilangkan benda asing yang menempel atau dengan mengganti drum jika terdapat lubang kecil permukaan drum'),
-	('K0005', 'Sensor Kertas', 'Sensor kertas rusak atau tidak terpasang dengan baik', 'Pastikan posisi kertas terpasang dengan baik, apabila sudah dilakukan tetapi lampu masih menyala kemungkinan sensor kertas printer rusak. Disarankan untuk mengganti sensor printer yang baru'),
-	('K0006', 'Kabel Cutter', 'Kabel Cutter bermasalah', 'Coba lakukan pengecekan di kabel cutternya apakah ada yang putus atau tidak dan cek juga apakah sensor gerak masih bergunsi dengan baik atau tidak dan lakukanlah pembersihan sendor dengan menggunakan cairan pembersih printer');
+INSERT INTO `tabelkerusakan` (`KodeKerusakan`, `NamaKerusakan`, `Penyebab`, `Solusi`, `Gambar`) VALUES
+	('K0001', 'Tinta Habis', 'Tinta pada cartridge sudah habis atau mat head kotor', 'Lepas cartridge dengan hati-hati untuk mengecek apakah tinta sudah habis atau belum. Setelah itu lakukan pembersihan pada mat headnya dengan menggunakan carian pembersih tinta', NULL),
+	('K0002', 'Kertas terlalu Tebal', 'Kertas yang dipasang ke printer terlalu banyak atau kertas lengket', 'Membatasi tebal tumpukan kertas sesuai dengan kapasitas yang didukung oleh printer. Sebelum dipasang pada paper try, sebaiknya kertas dikibas-kibaskan terlebih dahulu agar kertas tidak saling menempel', NULL),
+	('K0003', 'Toner Printer', 'Toner printer tidak merata terpasang', 'Menggoyang toner printer agar lebih merata dan dapat dipakai kembali namun tetap bersiap untuk mengisinya dengan yang baru', NULL),
+	('K0004', 'Drum', 'Drum kotor atau sudah berlubang', 'Usaplah drum dnegan kain halus untuk menghilangkan benda asing yang menempel atau dengan mengganti drum jika terdapat lubang kecil permukaan drum', NULL),
+	('K0005', 'Sensor Kertas', 'Sensor kertas rusak atau tidak terpasang dengan baik', 'Pastikan posisi kertas terpasang dengan baik, apabila sudah dilakukan tetapi lampu masih menyala kemungkinan sensor kertas printer rusak. Disarankan untuk mengganti sensor printer yang baru', NULL),
+	('K0006', 'Kabel Cutter', 'Kabel Cutter bermasalah', 'Coba lakukan pengecekan di kabel cutternya apakah ada yang putus atau tidak dan cek juga apakah sensor gerak masih bergunsi dengan baik atau tidak dan lakukanlah pembersihan sendor dengan menggunakan cairan pembersih printer', NULL);
 
 -- Dumping structure for table sistempakar_printer.tabelpertanyaan
-DROP TABLE IF EXISTS `tabelpertanyaan`;
 CREATE TABLE IF NOT EXISTS `tabelpertanyaan` (
   `KodePertanyaan` varchar(6) NOT NULL,
   `Pertanyaan` varchar(100) NOT NULL,
@@ -95,7 +120,6 @@ INSERT INTO `tabelpertanyaan` (`KodePertanyaan`, `Pertanyaan`) VALUES
 	('P0015', 'Apakah printer hanya dapat mencetak sebanyak satu kali?');
 
 -- Dumping structure for table sistempakar_printer.tabelrule
-DROP TABLE IF EXISTS `tabelrule`;
 CREATE TABLE IF NOT EXISTS `tabelrule` (
   `KodeRule` varchar(6) NOT NULL,
   `kodepertanyaan1` varchar(50) NOT NULL,
@@ -116,7 +140,6 @@ INSERT INTO `tabelrule` (`KodeRule`, `kodepertanyaan1`, `kodekerusakan`) VALUES
 	('R0006', 'P0003,P0014,P0015', 'K0006');
 
 -- Dumping structure for table sistempakar_printer.tabeluser
-DROP TABLE IF EXISTS `tabeluser`;
 CREATE TABLE IF NOT EXISTS `tabeluser` (
   `IDUser` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(50) NOT NULL,
@@ -133,26 +156,6 @@ DELETE FROM `tabeluser`;
 INSERT INTO `tabeluser` (`IDUser`, `Username`, `Nama`, `No_Telp`, `Email`, `Alamat`, `Password`) VALUES
 	(1, 'mario.chamdjoko', 'Mario Chamdjoko Jati Mulyo', '085155001711', 'mario.chamdjoko@mhs.itenas.ac.', 'Riung bandung', 'ngasal'),
 	(2, 'mario.jati', 'MarChamdjok', '08811223344', 'chamdjokom@gmail.com', 'Riung bandung', 'ngasaljuga');
-	
--- Dumping structure for table sistempakar_printer.tabelhistory
-DROP TABLE IF EXISTS `tabelhistory`;
-CREATE TABLE IF NOT EXISTS `tabelhistory` (
-  `IDHistory` int(11) NOT NULL AUTO_INCREMENT,
-  `IDUser` int(11) NOT NULL,
-  `KodeKerusakan` varchar(6) NOT NULL,
-  `Waktu` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`IDHistory`),
-  KEY `FK__tabeluser` (`IDUser`),
-  KEY `FK_tabelhistory_tabelkerusakan` (`KodeKerusakan`),
-  CONSTRAINT `FK__tabeluser` FOREIGN KEY (`IDUser`) REFERENCES `tabeluser` (`IDUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tabelhistory_tabelkerusakan` FOREIGN KEY (`KodeKerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table sistempakar_printer.tabelhistory: ~2 rows (approximately)
-DELETE FROM `tabelhistory`;
-INSERT INTO `tabelhistory` (`IDHistory`, `IDUser`, `KodeKerusakan`, `Waktu`) VALUES
-	(1, 1, 'K0003', '2023-05-28 15:10:20'),
-	(2, 2, 'K0006', '2023-05-28 15:58:24');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

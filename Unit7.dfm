@@ -20,7 +20,7 @@ object Form7: TForm7
     Top = 0
     Width = 641
     Height = 473
-    ActivePage = TabSheet6
+    ActivePage = TabSheet2
     TabOrder = 0
     OnChanging = PageControl1Changing
     object TabSheet1: TTabSheet
@@ -154,6 +154,13 @@ object Form7: TForm7
         Height = 13
         Caption = 'Solusi'
       end
+      object Label12: TLabel
+        Left = 443
+        Top = 266
+        Width = 47
+        Height = 13
+        Caption = 'Gambar : '
+      end
       object DBEKodeKerusakan: TDBEditTyped
         Left = 130
         Top = 244
@@ -261,10 +268,19 @@ object Form7: TForm7
         Left = 130
         Top = 359
         Width = 487
-        Height = 83
+        Height = 43
         DataField = 'Solusi'
         DataSource = DM2.Kerusakan_ds
         TabOrder = 5
+      end
+      object DBImage1: TDBImage
+        Left = 496
+        Top = 248
+        Width = 65
+        Height = 65
+        DataSource = DM2.Kerusakan_ds
+        TabOrder = 6
+        OnClick = DBImage1Click
       end
     end
     object TabSheet3: TTabSheet

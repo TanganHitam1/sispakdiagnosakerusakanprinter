@@ -35,7 +35,10 @@ type
     { Private declarations }
   public
     { Public declarations }
+    Name: string;
     procedure TabelAktif(b:Boolean);
+    procedure SaveImageToDatabase(AStream: TStream);
+    procedure LoadFromStream(AStream: TStream);
   end;
 
 var
@@ -63,6 +66,24 @@ begin
   pRule_zq.Active := b;
   User_zq.Active := b;
   History_zq.Active := b;
+end;
+
+procedure TDM2.SaveImageToDatabase(AStream: TStream);
+var
+  Len: Integer;
+begin
+  Len := Length(Name);
+  AStream.Write(Len, SizeOf(Len));
+  AStream.Write(PChar(Name)^, Len);
+end;
+
+procedure TDM2.LoadFromStream(AStream: TStream);
+var
+  Len: Integer;
+begin
+  AStream.Read(Len, SizeOf(Len));
+  SetString(Name, PChar(nil), Len);
+  AStream.Read(PChar(Name)^, Len);
 end;
 
 end.

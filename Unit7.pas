@@ -51,9 +51,12 @@ type
     SMDBGrid4: TSMDBGrid;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
+    Label12: TLabel;
+    DBImage1: TDBImage;
     procedure BitBtn2Click(Sender: TObject);
     procedure PageControl1Changing(Sender: TObject; var AllowChange: Boolean);
     procedure FormShow(Sender: TObject);
+    procedure DBImage1Click(Sender: TObject);
   private
     { Private declarations }
     procedure refreshtable;
@@ -69,6 +72,27 @@ uses
   Unit1,Unit2;
 
 {$R *.dfm}
+procedure TForm7.DBImage1Click(Sender: TObject);
+var
+  OpenDialog: TOpenDialog;
+begin
+  OpenDialog := TOpenDialog.Create(nil);
+  try
+    OpenDialog.Filter := 'Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif';
+    if OpenDialog.Execute then
+    begin
+      // Memperbarui gambar pada dataset
+      TGraphicField(TBlobField(DM2.Kerusakan_ds.DataSet.FieldByName('ImageData'))).LoadFromFile(OpenDialog.FileName);
+
+      // Mengupdate perubahan ke database
+      DM2.Kerusakan_ds.DataSet.Post;
+    end;
+  finally
+    OpenDialog.Free;
+  end;
+
+end;
+
 procedure TForm7.FormShow(Sender: TObject);
 begin
   refreshtable;

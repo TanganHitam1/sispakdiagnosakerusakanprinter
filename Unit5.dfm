@@ -31,7 +31,7 @@ object Form5: TForm5
   end
   object Panel1: TPanel
     Left = 24
-    Top = 79
+    Top = 55
     Width = 585
     Height = 130
     TabOrder = 0
@@ -82,9 +82,9 @@ object Form5: TForm5
   end
   object Panel2: TPanel
     Left = 24
-    Top = 215
+    Top = 191
     Width = 585
-    Height = 162
+    Height = 219
     TabOrder = 3
     object Label3: TLabel
       Left = 16
@@ -111,9 +111,9 @@ object Form5: TForm5
     end
     object DBText3: TDBText
       Left = 161
-      Top = 73
+      Top = 79
       Width = 409
-      Height = 80
+      Height = 122
       DataField = 'rfSolusi'
       DataSource = DM2.pRule_ds
       WordWrap = True
@@ -132,6 +132,12 @@ object Form5: TForm5
       Height = 17
       DataField = 'rfNamaKerusakan'
       DataSource = DM2.pRule_ds
+    end
+    object Image1: TImage
+      Left = 16
+      Top = 96
+      Width = 105
+      Height = 105
     end
   end
 end

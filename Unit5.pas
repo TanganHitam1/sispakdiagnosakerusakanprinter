@@ -24,6 +24,7 @@ type
     DBText3: TDBText;
     DBText1: TDBText;
     Label6: TLabel;
+    Image1: TImage;
     procedure btnYaClick(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

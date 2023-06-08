@@ -57,6 +57,8 @@ type
     procedure PageControl1Changing(Sender: TObject; var AllowChange: Boolean);
     procedure FormShow(Sender: TObject);
     procedure DBImage1Click(Sender: TObject);
+    procedure SMDBNavigator4BeforeAction(Sender: TObject;
+      var Button: TSMNavigateBtn; var CanClick: Boolean);
   private
     { Private declarations }
     procedure refreshtable;
@@ -76,13 +78,16 @@ procedure TForm7.DBImage1Click(Sender: TObject);
 var
   OpenDialog: TOpenDialog;
 begin
+  if not (DM2.Kerusakan_ds.DataSet.State in [dsEdit, dsInsert]) then
+    DM2.Kerusakan_ds.DataSet.Edit;
+
   OpenDialog := TOpenDialog.Create(nil);
   try
     OpenDialog.Filter := 'Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif';
     if OpenDialog.Execute then
     begin
       // Memperbarui gambar pada dataset
-      TGraphicField(TBlobField(DM2.Kerusakan_ds.DataSet.FieldByName('ImageData'))).LoadFromFile(OpenDialog.FileName);
+      TGraphicField(TBlobField(DM2.Kerusakan_ds.DataSet.FieldByName('Gambar'))).LoadFromFile(OpenDialog.FileName);
 
       // Mengupdate perubahan ke database
       DM2.Kerusakan_ds.DataSet.Post;
@@ -143,6 +148,13 @@ begin
       Active:=True;
     end;
   end;
+end;
+
+procedure TForm7.SMDBNavigator4BeforeAction(Sender: TObject;
+  var Button: TSMNavigateBtn; var CanClick: Boolean);
+begin
+  if (Button = sbEdit) and not (DM2.Kerusakan_ds.DataSet.State in [dsEdit, dsInsert]) then
+    DM2.Kerusakan_ds.DataSet.Edit;
 end;
 
 procedure TForm7.BitBtn2Click(Sender: TObject);

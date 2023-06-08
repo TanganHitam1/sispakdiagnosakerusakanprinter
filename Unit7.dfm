@@ -243,6 +243,7 @@ object Form7: TForm7
         ShowCaption = False
         ShowGlyph = True
         TabOrder = 3
+        BeforeAction = SMDBNavigator4BeforeAction
       end
       object DBEPenyebab: TDBEditTyped
         Left = 130
@@ -279,6 +280,7 @@ object Form7: TForm7
         Width = 65
         Height = 65
         DataSource = DM2.Kerusakan_ds
+        Stretch = True
         TabOrder = 6
         OnClick = DBImage1Click
       end

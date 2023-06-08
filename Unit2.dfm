@@ -126,7 +126,7 @@ object DM2: TDM2
   object User_zq: TZQuery
     Connection = con
     SQL.Strings = (
-      'select * from tabelgejala order by KodeGejala')
+      'select * from tabeluser order by IDUser')
     Params = <>
     Left = 472
     Top = 112

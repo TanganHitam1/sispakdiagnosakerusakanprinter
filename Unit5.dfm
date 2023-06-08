@@ -38,8 +38,8 @@ object Form5: TForm5
     object Label2: TLabel
       Left = 16
       Top = 16
-      Width = 313
-      Height = 57
+      Width = 66
+      Height = 13
       Caption = 'PERTANYAAN'
     end
     object btnYa: TBitBtn

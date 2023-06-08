@@ -23,14 +23,14 @@ type
     User_ds: TDataSource;
     History_zq: TZQuery;
     History_ds: TDataSource;
+    TempPertanyaan_zq: TZQuery;
     pRule_zqKodeRule: TWideStringField;
     pRule_zqkodepertanyaan1: TWideStringField;
     pRule_zqkodekerusakan: TWideStringField;
-    TempPertanyaan_zq: TZQuery;
-    pRule_zqrfPenyebab: TStringField;
-    pRule_zqrfNamaKerusakan: TStringField;
-    pRule_zqrfSolusi: TStringField;
-    pRule_zqgambar: TBlobField;
+    pRule_zqNamaKerusakan: TWideStringField;
+    pRule_zqPenyebab: TWideStringField;
+    pRule_zqSolusi: TWideStringField;
+    pRule_zqGambar: TBlobField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

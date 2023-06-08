@@ -48,8 +48,11 @@ object DM2: TDM2
   object pRule_zq: TZQuery
     Connection = con
     SQL.Strings = (
-      'SELECT * FROM tabelrule'
-      'ORDER BY KodeRule')
+      'SELECT a.KodeRule, a.kodepertanyaan1, a.kodekerusakan,'
+      'b.NamaKerusakan,b.Penyebab, b.Solusi, b.Gambar'
+      'FROM tabelrule a, tabelkerusakan b'
+      'WHERE a.kodekerusakan= b.KodeKerusakan'
+      'ORDER BY a.KodeRule')
     Params = <>
     Left = 400
     Top = 112
@@ -68,44 +71,23 @@ object DM2: TDM2
       Required = True
       Size = 6
     end
-    object pRule_zqrfNamaKerusakan: TStringField
-      FieldKind = fkLookup
-      FieldName = 'rfNamaKerusakan'
-      LookupDataSet = Kerusakan_zq
-      LookupKeyFields = 'KodeKerusakan'
-      LookupResultField = 'NamaKerusakan'
-      KeyFields = 'kodekerusakan'
+    object pRule_zqNamaKerusakan: TWideStringField
+      FieldName = 'NamaKerusakan'
+      Required = True
       Size = 30
-      Lookup = True
     end
-    object pRule_zqrfPenyebab: TStringField
-      FieldKind = fkLookup
-      FieldName = 'rfPenyebab'
-      LookupDataSet = Kerusakan_zq
-      LookupKeyFields = 'KodeKerusakan'
-      LookupResultField = 'Penyebab'
-      KeyFields = 'kodekerusakan'
+    object pRule_zqPenyebab: TWideStringField
+      FieldName = 'Penyebab'
+      Required = True
       Size = 200
-      Lookup = True
     end
-    object pRule_zqrfSolusi: TStringField
-      FieldKind = fkLookup
-      FieldName = 'rfSolusi'
-      LookupDataSet = Kerusakan_zq
-      LookupKeyFields = 'KodeKerusakan'
-      LookupResultField = 'Solusi'
-      KeyFields = 'kodekerusakan'
+    object pRule_zqSolusi: TWideStringField
+      FieldName = 'Solusi'
+      Required = True
       Size = 1000
-      Lookup = True
     end
-    object pRule_zqgambar: TBlobField
-      FieldKind = fkLookup
-      FieldName = 'gambar'
-      LookupDataSet = Kerusakan_zq
-      LookupKeyFields = 'KodeKerusakan'
-      LookupResultField = 'Gambar'
-      KeyFields = 'kodekerusakan'
-      Lookup = True
+    object pRule_zqGambar: TBlobField
+      FieldName = 'Gambar'
     end
   end
   object Rule_zq: TZQuery

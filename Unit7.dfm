@@ -279,6 +279,7 @@ object Form7: TForm7
         Top = 248
         Width = 65
         Height = 65
+        DataField = 'Gambar'
         DataSource = DM2.Kerusakan_ds
         Stretch = True
         TabOrder = 6

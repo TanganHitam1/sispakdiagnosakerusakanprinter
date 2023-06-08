@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `tabelgejala` (
   `KodeGejala` varchar(6) NOT NULL,
   `NamaGejala` varchar(50) NOT NULL,
   PRIMARY KEY (`KodeGejala`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabelgejala: ~15 rows (approximately)
 DELETE FROM `tabelgejala`;
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `tabelhistory` (
   KEY `FK_tabelhistory_tabelkerusakan` (`KodeKerusakan`),
   CONSTRAINT `FK__tabeluser` FOREIGN KEY (`IDUser`) REFERENCES `tabeluser` (`IDUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_tabelhistory_tabelkerusakan` FOREIGN KEY (`KodeKerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabelhistory: ~8 rows (approximately)
 DELETE FROM `tabelhistory`;
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `tabelkerusakan` (
   `Solusi` varchar(1000) NOT NULL,
   `Gambar` blob DEFAULT NULL,
   PRIMARY KEY (`KodeKerusakan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabelkerusakan: ~6 rows (approximately)
 DELETE FROM `tabelkerusakan`;
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `tabelpertanyaan` (
   `KodePertanyaan` varchar(6) NOT NULL,
   `Pertanyaan` varchar(100) NOT NULL,
   PRIMARY KEY (`KodePertanyaan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabelpertanyaan: ~15 rows (approximately)
 DELETE FROM `tabelpertanyaan`;
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `tabelrule` (
   PRIMARY KEY (`KodeRule`),
   KEY `FK_tabelrule_tabelkerusakan` (`kodekerusakan`),
   CONSTRAINT `FK_tabelrule_tabelkerusakan` FOREIGN KEY (`kodekerusakan`) REFERENCES `tabelkerusakan` (`KodeKerusakan`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabelrule: ~6 rows (approximately)
 DELETE FROM `tabelrule`;
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `tabeluser` (
   `Alamat` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   PRIMARY KEY (`IDUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- Dumping data for table sistempakar_printer.tabeluser: ~2 rows (approximately)
 DELETE FROM `tabeluser`;

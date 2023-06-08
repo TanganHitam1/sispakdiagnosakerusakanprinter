@@ -25,6 +25,7 @@ type
     DBText1: TDBText;
     Label6: TLabel;
     DBImage1: TDBImage;
+    Memo1: TMemo;
     procedure btnYaClick(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -67,9 +68,11 @@ begin
     s :='N';
   s:= s+DM2.Pertanyaan_zq.FieldByName('KodePertanyaan').AsString;
   Form6.Memo1.Lines.Add(s);
+  s4:= s + ' - ' + DM2.Pertanyaan_zq.FieldByName('Pertanyaan').AsString;
+  Memo1.Lines.Add(s4  );
 
-  s := 'SELECT * FROM tabelrule ';
-  s4 := 'SELECT a.KodeRule, a.kodepertanyaan1, a.kodekerusakan, '+
+//  s := 'SELECT * FROM tabelrule ';
+  s := 'SELECT a.KodeRule, a.kodepertanyaan1, a.kodekerusakan, '+
 'b.NamaKerusakan,b.Penyebab, b.Solusi, b.Gambar '+
 'FROM tabelrule a, tabelkerusakan b ';
   s2 := '';
@@ -115,6 +118,7 @@ begin
     DBText1.Visible:=True;
     DBText2.Visible:=True;
     DBText3.Visible:=True;
+    DBImage1.Visible:=True;
     Label2.Caption:='';
     OutputDebugString(PChar(DM2.pRule_zq.FieldByName('KodeKerusakan').ToString));
     with DM2.History_zq do begin
@@ -133,6 +137,7 @@ begin
   DBText1.Visible:=False;
   DBText2.Visible:=False;
   DBText3.Visible:=False;
+  DBImage1.Visible:=False;
   btnYa.Enabled := True;
   btnTidak.Enabled := True;
   ShowPertanyaan;

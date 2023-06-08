@@ -24045,6 +24045,27 @@ object Form4: TForm4
     Flat = True
     OnClick = SpeedButton1Click
   end
+  object Label2: TLabel
+    Left = 56
+    Top = 296
+    Width = 68
+    Height = 13
+    Caption = 'Printer Ink Jet'
+  end
+  object Label3: TLabel
+    Left = 272
+    Top = 296
+    Width = 79
+    Height = 13
+    Caption = 'Printer Laser Jet'
+  end
+  object Label4: TLabel
+    Left = 488
+    Top = 296
+    Width = 85
+    Height = 13
+    Caption = 'Printer Dot Matrix'
+  end
   object btnKembali: TBitBtn
     Left = 97
     Top = 408

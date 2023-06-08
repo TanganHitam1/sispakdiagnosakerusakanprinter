@@ -30,6 +30,7 @@ type
     pRule_zqrfPenyebab: TStringField;
     pRule_zqrfNamaKerusakan: TStringField;
     pRule_zqrfSolusi: TStringField;
+    pRule_zqgambar: TBlobField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

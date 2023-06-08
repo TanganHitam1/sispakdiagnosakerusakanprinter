@@ -24,7 +24,8 @@ type
     DBText3: TDBText;
     DBText1: TDBText;
     Label6: TLabel;
-    Image1: TImage;
+    DBImage1: TDBImage;
+    Memo1: TMemo;
     procedure btnYaClick(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -57,7 +58,7 @@ end;
 
 procedure TForm5.btnYaClick(Sender: TObject);
 var
-  s,s2,s3 : String;
+  s,s2,s3,s4 : String;
   i, tag : Integer;
 begin
   tag := (Sender AS TBitBtn).Tag;
@@ -67,18 +68,23 @@ begin
     s :='N';
   s:= s+DM2.Pertanyaan_zq.FieldByName('KodePertanyaan').AsString;
   Form6.Memo1.Lines.Add(s);
+  s4:= s + ' - ' + DM2.Pertanyaan_zq.FieldByName('Pertanyaan').AsString;
+  Memo1.Lines.Add(s4);
 
-  s := 'SELECT * FROM tabelrule ';
+//  s := 'SELECT * FROM tabelrule ';
+  s := 'SELECT a.KodeRule, a.kodepertanyaan1, a.kodekerusakan, '+
+'b.NamaKerusakan,b.Penyebab, b.Solusi, b.Gambar '+
+'FROM tabelrule a, tabelkerusakan b ';
   s2 := '';
   for i := 0 to Form6.Memo1.Lines.Count-1 do
   begin
     s3 := QuotedStr('%' + Trim(Copy(Form6.Memo1.Lines[i],2,5)) + '%');
     if Pos('Y',Form6.Memo1.Lines[i]) > 0 then
     begin
-      s2 := s2 + ' AND kodepertanyaan1 LIKE ' + s3;
+      s2 := s2 + ' AND a.kodepertanyaan1 LIKE ' + s3;
     end
     else
-    s2 := s2 + ' AND kodepertanyaan1 not LIKE ' + s3;
+    s2 := s2 + ' AND a.kodepertanyaan1 not LIKE ' + s3;
   end;
 
   if Length(s2) > 0 then
@@ -88,6 +94,7 @@ begin
   end
   else
     s2 := s;
+  s2:= s2 + 'AND a.kodekerusakan = b.KodeKerusakan ORDER BY a.KodeRule';
 
   DM2.pRule_zq.Active := False;
   DM2.pRule_zq.SQL.Text := s2;
@@ -111,6 +118,7 @@ begin
     DBText1.Visible:=True;
     DBText2.Visible:=True;
     DBText3.Visible:=True;
+    DBImage1.Visible:=True;
     Label2.Caption:='';
     OutputDebugString(PChar(DM2.pRule_zq.FieldByName('KodeKerusakan').ToString));
     with DM2.History_zq do begin
@@ -129,6 +137,7 @@ begin
   DBText1.Visible:=False;
   DBText2.Visible:=False;
   DBText3.Visible:=False;
+  DBImage1.Visible:=False;
   btnYa.Enabled := True;
   btnTidak.Enabled := True;
   ShowPertanyaan;

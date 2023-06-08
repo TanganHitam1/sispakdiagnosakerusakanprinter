@@ -8,6 +8,7 @@ object DM2: TDM2
     Catalog = ''
     Properties.Strings = (
       'controls_cp=CP_UTF16')
+    Connected = True
     HostName = 'localhost'
     Port = 3306
     Database = 'sistempakar_printer'
@@ -95,6 +96,15 @@ object DM2: TDM2
       LookupResultField = 'Solusi'
       KeyFields = 'kodekerusakan'
       Size = 1000
+      Lookup = True
+    end
+    object pRule_zqgambar: TBlobField
+      FieldKind = fkLookup
+      FieldName = 'gambar'
+      LookupDataSet = Kerusakan_zq
+      LookupKeyFields = 'KodeKerusakan'
+      LookupResultField = 'Gambar'
+      KeyFields = 'kodekerusakan'
       Lookup = True
     end
   end

@@ -38,8 +38,8 @@ object Form5: TForm5
     object Label2: TLabel
       Left = 16
       Top = 16
-      Width = 66
-      Height = 13
+      Width = 313
+      Height = 57
       Caption = 'PERTANYAAN'
     end
     object btnYa: TBitBtn
@@ -60,6 +60,16 @@ object Form5: TForm5
       Caption = '&Tidak'
       TabOrder = 1
       OnClick = btnYaClick
+    end
+    object Memo1: TMemo
+      Left = 384
+      Top = 13
+      Width = 193
+      Height = 100
+      Lines.Strings = (
+        'Memo1')
+      ScrollBars = ssBoth
+      TabOrder = 2
     end
   end
   object btnBack: TBitBtn
@@ -98,7 +108,7 @@ object Form5: TForm5
       Top = 35
       Width = 416
       Height = 22
-      DataField = 'rfPenyebab'
+      DataField = 'Penyebab'
       DataSource = DM2.pRule_ds
       WordWrap = True
     end
@@ -111,10 +121,10 @@ object Form5: TForm5
     end
     object DBText3: TDBText
       Left = 161
-      Top = 79
+      Top = 71
       Width = 409
       Height = 122
-      DataField = 'rfSolusi'
+      DataField = 'Solusi'
       DataSource = DM2.pRule_ds
       WordWrap = True
     end
@@ -130,14 +140,18 @@ object Form5: TForm5
       Top = 12
       Width = 409
       Height = 17
-      DataField = 'rfNamaKerusakan'
+      DataField = 'NamaKerusakan'
       DataSource = DM2.pRule_ds
     end
-    object Image1: TImage
+    object DBImage1: TDBImage
       Left = 16
-      Top = 96
+      Top = 104
       Width = 105
       Height = 105
+      DataField = 'Gambar'
+      DataSource = DM2.pRule_ds
+      Stretch = True
+      TabOrder = 0
     end
   end
 end

@@ -77,11 +77,11 @@ end;
 
 procedure TForm8.btnLoginClick(Sender: TObject);
 var
-  uname, name, telp, email, addr, pass, cpass : String;
+  uname, Inname, telp, email, addr, pass, cpass : String;
   reg : bool;
 begin
   uname:=edtUname.Text;
-  name:=edtName.Text;
+  Inname:=edtName.Text;
   telp:=edtTelp.Text;
   email:=edtEmail.Text;
   addr:=edtAlamat.Text;
@@ -108,12 +108,20 @@ begin
         Application.MessageBox('Username telah terdaftar!! Gunakan username'+
         ' lain atau silahkan login','Peringatan',MB_OK or MB_ICONWARNING);
       end else begin
-        SQL.Text := 'insert into tabeluser (Username, Nama, No_Telp, Email, '+
-        'Alamat, Password) values ('+QuotedStr(uname)+', '+QuotedStr(name)+', '
-        +QuotedStr(telp)+', '+QuotedStr(email)+', '+QuotedStr(addr)+', '+
-        QuotedStr(pass)+', ';
-        ExecSQL;
-        Close;
+        try
+          SQL.Text := 'INSERT INTO tabeluser (Username, Nama, No_Telp, Email, ' +
+          'Alamat, Password) VALUES (:username, :nama, :notelp, :email, '+
+          ':alamat, :password)';
+          ParamByName('username').AsString := uname;
+          ParamByName('nama').AsString := Inname;
+          ParamByName('notelp').AsString := telp;
+          ParamByName('email').AsString := email;
+          ParamByName('alamat').AsString := addr;
+          ParamByName('password').AsString := pass;
+          ExecSQL;
+        finally
+          SQL.Text := 'select * from tabeluser order by IDUser';
+        end;
         clearReg;
         Hide;
         Form1.Show;

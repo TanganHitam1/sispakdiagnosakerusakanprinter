@@ -111,8 +111,8 @@ begin
         SQL.Text := 'insert into tabeluser (Username, Nama, No_Telp, Email, '+
         'Alamat, Password) values ('+QuotedStr(uname)+', '+QuotedStr(name)+', '
         +QuotedStr(telp)+', '+QuotedStr(email)+', '+QuotedStr(addr)+', '+
-        QuotedStr(pass)+', ';
-        Exec;
+        QuotedStr(pass)+' )';
+        ExecSQL;
         Close;
         clearReg;
         Hide;

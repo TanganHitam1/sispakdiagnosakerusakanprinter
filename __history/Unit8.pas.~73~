@@ -19,10 +19,12 @@ type
     edtEmail: TEdit;
     edtAlamat: TEdit;
     edtConfirmPass: TEdit;
-    CheckBox1: TCheckBox;
+    chckShowConfirmPass: TCheckBox;
     Panel1: TPanel;
     procedure btnLoginClick(Sender: TObject);
     procedure Label4Click(Sender: TObject);
+    procedure chckShowPasswordClick(Sender: TObject);
+    procedure chckShowConfirmPassClick(Sender: TObject);
   private
     { Private declarations }
     procedure clearReg;
@@ -37,6 +39,22 @@ implementation
 uses Unit1,Unit2;
 {$R *.dfm}
 
+procedure TForm8.chckShowConfirmPassClick(Sender: TObject);
+begin
+  if chckShowConfirmPass.Checked then
+    edtConfirmPass.PasswordChar:=#0
+  else
+    edtConfirmPass.PasswordChar:='*';
+end;
+
+procedure TForm8.chckShowPasswordClick(Sender: TObject);
+begin
+  if chckShowPassword.Checked then
+    edtPass.PasswordChar:=#0
+  else
+    edtPass.PasswordChar:='*';
+end;
+
 procedure TForm8.clearReg;
 begin
   edtUname.Clear;
@@ -50,6 +68,8 @@ end;
 
 procedure TForm8.Label4Click(Sender: TObject);
 begin
+  edtPass.PasswordChar := '*';
+  edtConfirmPass.PasswordChar := '*';
   clearReg;
   Hide;
   Form1.Show;
@@ -57,11 +77,11 @@ end;
 
 procedure TForm8.btnLoginClick(Sender: TObject);
 var
-  uname, name, telp, email, addr, pass, cpass : String;
+  uname, Inname, telp, email, addr, pass, cpass : String;
   reg : bool;
 begin
   uname:=edtUname.Text;
-  name:=edtName.Text;
+  Inname:=edtName.Text;
   telp:=edtTelp.Text;
   email:=edtEmail.Text;
   addr:=edtAlamat.Text;
@@ -86,15 +106,22 @@ begin
       Active:=True;
       if RecordCount > 0  then begin
         Application.MessageBox('Username telah terdaftar!! Gunakan username'+
-        'lain atau silahkan login','Peringatan',MB_OK or MB_ICONWARNING);
+        ' lain atau silahkan login','Peringatan',MB_OK or MB_ICONWARNING);
       end else begin
-        Active:=False;
-        SQL.Text := 'insert into tabeluser (Username, Nama, No_Telp, Email, '+
-        'Alamat, Password) values ('+QuotedStr(uname)+', '+QuotedStr(name)+', '
-        +QuotedStr(telp)+', '+QuotedStr(email)+', '+QuotedStr(addr)+', '+
-        QuotedStr(pass)+', ';
-        Active:=True;
-        Active:=False;
+        try
+          SQL.Text := 'INSERT INTO tabeluser (Username, Nama, No_Telp, Email, ' +
+          'Alamat, Password) VALUES (:username, :nama, :notelp, :email, '+
+          ':alamat, :password)';
+          ParamByName('username').AsString := uname;
+          ParamByName('nama').AsString := Inname;
+          ParamByName('notelp').AsString := telp;
+          ParamByName('email').AsString := email;
+          ParamByName('alamat').AsString := addr;
+          ParamByName('password').AsString := pass;
+          ExecSQL;
+        finally
+          Free;
+        end;
         clearReg;
         Hide;
         Form1.Show;
